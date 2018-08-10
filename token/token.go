@@ -34,3 +34,8 @@ const (
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
 )
+
+// New returns a new token.
+func New(tokenType Type, ch byte) Token {
+	return Token{Type: tokenType, Literal: string(ch)}
+}
