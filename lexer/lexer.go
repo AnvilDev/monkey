@@ -27,10 +27,17 @@ func (l *Lexer) readChar() {
 	l.readPosition++
 }
 
+func (l *Lexer) skipWhitespace() {
+	for l.ch == ' ' || l.ch == '\t' || l.ch == '\n' || l.ch == '\r' {
+		l.readChar()
+	}
+}
+
 // NextToken returns the next token in the Monkey source code.
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
 
+	l.skipWhitespace()
 	switch l.ch {
 	case '=':
 		tok = token.New(token.ASSIGN, l.ch)
